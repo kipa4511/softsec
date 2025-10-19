@@ -5,10 +5,12 @@ services:
     build:
       context: server
       dockerfile: Dockerfile
+    command: "gunicorn -b 0.0.0.0:5000 src.server:app"
     ports:
       - "5000:5000"
     volumes:
       - user-files:/app/storage
+      - ./storage:/app/storage
     environment:
       - PYTHONUNBUFFERED=1
       - DB_HOST=db
