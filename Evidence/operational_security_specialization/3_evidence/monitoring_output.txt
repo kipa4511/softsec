@@ -1,0 +1,9 @@
+Starting Tatou Security Monitor - Detailed Mode...
+
+=== Security Check at 18:39:13 ===
+⚠️  SECURITY ALERT: 9 failed logins detected
+Recent failed logins:
+  1. Invalid credentials for victim4@test.com from 172.18.0.1 | Status:FAILED
+  2. Invalid credentials for victim5@test.com from 172.18.0.1 | Status:FAILED
+  3. Invalid credentials for victim6@test.com from 172.18.0.1 | Status:FAILED
+[18:39:13] Monitoring check completed

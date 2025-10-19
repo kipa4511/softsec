@@ -1,0 +1,24 @@
+2025-10-18 16:28:18,832 | INFO | SUCCESS | User:system | IP:172.18.0.1 | Login attempt from 172.18.0.1 | Status:SUCCESS
+2025-10-18 16:28:19,140 | WARNING | SECURITY_ALERT - FAILURE | User:system | IP:172.18.0.1 | LOGIN FAILED - Invalid credentials for test2@test.com from 172.18.0.1 | Status:FAILED
+2025-10-18 16:28:25,526 | INFO | SUCCESS | User:system | IP:172.18.0.1 | User registration attempt from 172.18.0.1 | Status:SUCCESS
+2025-10-18 16:28:25,736 | WARNING | SECURITY_ALERT - FAILURE | User:system | IP:172.18.0.1 | REGISTRATION FAILED - Duplicate: test2@test.com from 172.18.0.1 | Status:FAILED
+2025-10-18 16:50:42,248 | INFO | SUCCESS | User:system | IP:172.18.0.1 | User registration attempt from 172.18.0.1 | Status:SUCCESS
+2025-10-18 16:50:42,466 | WARNING | SECURITY_ALERT - FAILURE | User:system | IP:172.18.0.1 | REGISTRATION FAILED - Duplicate: test2@test.com from 172.18.0.1 | Status:FAILED
+2025-10-18 16:50:55,439 | INFO | SUCCESS | User:system | IP:172.18.0.1 | Login attempt from 172.18.0.1 | Status:SUCCESS
+2025-10-18 16:50:55,577 | WARNING | SECURITY_ALERT - FAILURE | User:system | IP:172.18.0.1 | LOGIN FAILED - Invalid credentials for test2@test.com from 172.18.0.1 | Status:FAILED
+2025-10-18 16:51:28,831 | INFO | SUCCESS | User:system | IP:172.18.0.1 | Login attempt from 172.18.0.1 | Status:SUCCESS
+2025-10-18 16:51:28,953 | WARNING | SECURITY_ALERT - FAILURE | User:system | IP:172.18.0.1 | LOGIN FAILED - Invalid credentials for test2@test.com from 172.18.0.1 | Status:FAILED
+2025-10-18 16:56:03,525 | INFO | SUCCESS | User:system | IP:172.18.0.1 | Login attempt from 172.18.0.1 | Status:SUCCESS
+2025-10-18 16:56:03,534 | WARNING | SECURITY_ALERT - FAILURE | User:system | IP:172.18.0.1 | LOGIN FAILED - Invalid credentials for victim1@test.com from 172.18.0.1 | Status:FAILED
+2025-10-18 16:56:04,582 | INFO | SUCCESS | User:system | IP:172.18.0.1 | Login attempt from 172.18.0.1 | Status:SUCCESS
+2025-10-18 16:56:04,583 | WARNING | SECURITY_ALERT - FAILURE | User:system | IP:172.18.0.1 | LOGIN FAILED - Invalid credentials for victim2@test.com from 172.18.0.1 | Status:FAILED
+2025-10-18 16:56:05,658 | INFO | SUCCESS | User:system | IP:172.18.0.1 | Login attempt from 172.18.0.1 | Status:SUCCESS
+2025-10-18 16:56:05,659 | WARNING | SECURITY_ALERT - FAILURE | User:system | IP:172.18.0.1 | LOGIN FAILED - Invalid credentials for victim3@test.com from 172.18.0.1 | Status:FAILED
+2025-10-18 16:56:06,800 | INFO | SUCCESS | User:system | IP:172.18.0.1 | Login attempt from 172.18.0.1 | Status:SUCCESS
+2025-10-18 16:56:06,810 | WARNING | SECURITY_ALERT - FAILURE | User:system | IP:172.18.0.1 | LOGIN FAILED - Invalid credentials for victim4@test.com from 172.18.0.1 | Status:FAILED
+2025-10-18 16:56:08,181 | INFO | SUCCESS | User:system | IP:172.18.0.1 | Login attempt from 172.18.0.1 | Status:SUCCESS
+2025-10-18 16:56:08,222 | WARNING | SECURITY_ALERT - FAILURE | User:system | IP:172.18.0.1 | LOGIN FAILED - Invalid credentials for victim5@test.com from 172.18.0.1 | Status:FAILED
+2025-10-18 16:56:09,604 | INFO | SUCCESS | User:system | IP:172.18.0.1 | Login attempt from 172.18.0.1 | Status:SUCCESS
+2025-10-18 16:56:09,607 | WARNING | SECURITY_ALERT - FAILURE | User:system | IP:172.18.0.1 | LOGIN FAILED - Invalid credentials for victim6@test.com from 172.18.0.1 | Status:FAILED
+2025-10-18 16:56:14,187 | INFO | SUCCESS | User:system | IP:172.18.0.1 | User registration attempt from 172.18.0.1 | Status:SUCCESS
+2025-10-18 16:56:14,503 | WARNING | SECURITY_ALERT - FAILURE | User:system | IP:172.18.0.1 | REGISTRATION FAILED - Duplicate: test2@test.com from 172.18.0.1 | Status:FAILED
