@@ -57,6 +57,7 @@ COPY src/assets/Group_22.pdf /app/assets/Group_22.pdf
 COPY src/assets/Group_23.pdf /app/assets/Group_23.pdf
 COPY src/assets/Group_24.pdf /app/assets/Group_24.pdf
 COPY src/assets/Group_26.pdf /app/assets/Group_26.pdf
+COPY src/assets/Nicolas.pdf /app/assets/Nicolas.pdf
 
 # Install again in case local src defines entry points
 RUN pip install --no-cache-dir -e .
