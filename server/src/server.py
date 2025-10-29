@@ -241,6 +241,8 @@ def create_app():
             identity = match.group(1).capitalize() if match else "Unknown_Group"
 
         logger.info(f"RMAP request received from identity: {identity}")
+        logger.info(f"🔐 Session secret established for {identity}")
+        
 
         # -----------------------
         # Select base PDF
@@ -309,7 +311,37 @@ def create_app():
             "identity": identity
         }), 200
 
+        # -----------------------------
+        # ✅ Send response immediately
+        # -----------------------------
+        response = jsonify(result)
+    
+        # -----------------------------
+        # ✅ Schedule connection close
+        # -----------------------------
+        import threading, time
+        def close_rmap_connection(timeout=5):
+            """Gracefully close RMAP session after a limited timeout."""
+            time.sleep(timeout)
+            try:
+                if hasattr(rmap, "close"):
+                    rmap.close()
+                    logger.info("🧹 RMAP connection closed gracefully.")
+                else:
+                    # Clear session-related state manually
+                    rmap.last_identity = None
+                    app.config.pop("LAST_RMAP_REQUEST", None)
+                    logger.info("🧹 RMAP session data cleared (no explicit close method).")
+            except Exception as e:
+                logger.error(f"❌ Error closing RMAP session: {e}")
 
+        # Run cleanup asynchronously
+        threading.Thread(target=close_rmap_connection, daemon=True).start()
+
+        # -----------------------------
+        # ✅ Return response to client
+        # -----------------------------
+        return response, 200
       
     # -----------------------
     # Static + UI routes
@@ -349,7 +381,10 @@ def create_app():
     # -----------------------
     # Legacy API routes (all merged)
     # -----------------------
-
+    
+    
+    
+    
     @app.post("/api/create-user")
     def create_user():
         log_event(f"User registration attempt from {request.remote_addr}")
@@ -357,6 +392,7 @@ def create_app():
         email = (payload.get("email") or "").strip().lower()
         login = (payload.get("login") or "").strip()
         password = payload.get("password") or ""
+
         if not email or not login or not password:
             log_event(f"REGISTRATION FAILED - Missing fields from {request.remote_addr}")
             return jsonify({"error": "email, login, and password are required"}), 400
@@ -364,18 +400,27 @@ def create_app():
         hpw = generate_password_hash(password)
 
         try:
-            with get_engine().begin() as conn:
-                res = conn.execute(
+            from sqlalchemy import text
+
+            with get_engine().connect() as conn:
+                # ✅ Insert the new user
+                result = conn.execute(
                     text(
                         "INSERT INTO Users (email, hpassword, login) VALUES (:email, :hpw, :login)"
                     ),
                     {"email": email, "hpw": hpw, "login": login},
                 )
-                uid = int(res.lastrowid)
+                conn.commit()
+
+                # ✅ Retrieve the user back from DB using the inserted email
                 row = conn.execute(
-                    text("SELECT id, email, login FROM Users WHERE id = :id"),
-                    {"id": uid},
-                ).one()
+                    text("SELECT id, email, login FROM Users WHERE email = :email"),
+                    {"email": email},
+                ).fetchone()
+
+            if not row:
+                raise Exception("Failed to retrieve newly created user")
+
         except IntegrityError:
             log_event(f"REGISTRATION FAILED - Duplicate: {email} from {request.remote_addr}")
             return jsonify({"error": "email or login already exists"}), 409
@@ -383,7 +428,9 @@ def create_app():
             log_event(f"REGISTRATION FAILED - Database error: {str(e)} from {request.remote_addr}")
             return jsonify({"error": f"database error: {str(e)}"}), 503
 
+        log_event(f"REGISTRATION SUCCESS - {email} from {request.remote_addr}")
         return jsonify({"id": row.id, "email": row.email, "login": row.login}), 201
+
 
     @app.post("/api/login")
     def login():
@@ -391,18 +438,23 @@ def create_app():
         payload = request.get_json(silent=True) or {}
         email = (payload.get("email") or "").strip()
         password = payload.get("password") or ""
+
         if not email or not password:
             log_event(f"LOGIN FAILED - Missing credentials from {request.remote_addr}")
             return jsonify({"error": "email and password are required"}), 400
 
         try:
+            from sqlalchemy import text
+
             with get_engine().connect() as conn:
-                row = conn.execute(
+                result = conn.execute(
                     text(
                         "SELECT id, email, login, hpassword FROM Users WHERE email = :email LIMIT 1"
                     ),
                     {"email": email},
-                ).first()
+                )
+                row = result.fetchone()  # ✅ fixed: use fetchone() instead of first()
+
         except Exception as e:
             log_event(f"LOGIN FAILED - Database error: {str(e)} from {request.remote_addr}")
             return jsonify({"error": f"database error: {str(e)}"}), 503
@@ -410,8 +462,9 @@ def create_app():
         if not row or not check_password_hash(row.hpassword, password):
             log_event(f"LOGIN FAILED - Invalid credentials for {email} from {request.remote_addr}")
             return jsonify({"error": "invalid credentials"}), 401
-            log_event(f"LOGIN SUCCESS: {email} from {request.remote_addr}")
-        
+
+        log_event(f"LOGIN SUCCESS: {email} from {request.remote_addr}")
+
         token = _serializer().dumps(
             {"uid": int(row.id), "login": row.login, "email": row.email}
         )
@@ -425,6 +478,7 @@ def create_app():
             ),
             200,
         )
+
 
     ## POST /api/upload-document  (multipart/form-data)
     @app.post("/api/upload-document")
@@ -685,7 +739,7 @@ def create_app():
     # GET /api/get-version/<link>  → returns the watermarked PDF (inline)
     @app.get("/api/get-version/<link>")
     def get_version(link: str):
-        storage_dir = app.config["STORAGE_DIR"]
+        storage_dir = Path(app.config["STORAGE_DIR"])
         pdf_path = storage_dir / f"{link}.pdf"
         
         # ✅ 1. Serve directly if the file exists in storage
@@ -696,7 +750,12 @@ def create_app():
                 as_attachment=False,
                 download_name=f"{link}.pdf"
             )
-        
+        if not pdf_path.exists():
+            logger.error(f"❌ Requested PDF not found: {pdf_path}")
+            return jsonify({"error": "File not found"}), 404
+
+        logger.info(f"📄 Serving PDF for link: {link}")
+        return send_file(pdf_path, mimetype="application/pdf")
 
         try:
             with get_engine().connect() as conn:

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coverage for src/security_logger.py: 95%</title>
+    <title>Coverage for src/security_logger.py: 97%</title>
     <link rel="icon" sizes="32x32" href="favicon_32_cb_58284776.png">
     <link rel="stylesheet" href="style_cb_6b508a39.css" type="text/css">
     <script src="coverage_html_cb_6fb7b396.js" defer></script>
@@ -12,7 +12,7 @@
     <div class="content">
         <h1>
             <span class="text">Coverage for </span><b>src/security_logger.py</b>:
-            <span class="pc_cov">95%</span>
+            <span class="pc_cov">97%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
@@ -26,7 +26,6 @@
                         <kbd>r</kbd>
                         <kbd>m</kbd>
                         <kbd>x</kbd>
-                        <kbd>p</kbd>
                         &nbsp; toggle line displays
                     </p>
                     <p>
@@ -59,7 +58,6 @@
             <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">37<span class="text"> run</span></button>
             <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">1<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">0<span class="text"> excluded</span></button>
-            <button type="button" class="par run show_par button_toggle_par" value="par" data-shortcut="p" title="Toggle lines partially run">1<span class="text"> partial</span></button>
         </h2>
         <p class="text">
             <a id="prevFileLink" class="nav" href="z_145eef247bfb46b6_hash_after_eof_py.html">&#xab; prev</a> &nbsp; &nbsp;
@@ -67,7 +65,7 @@
             <a id="nextFileLink" class="nav" href="z_145eef247bfb46b6_server_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.11.0">coverage.py v7.11.0</a>,
-            created at 2025-10-22 23:23 +0200
+            created at 2025-10-29 02:38 -0400
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -108,7 +106,7 @@
     <p class="run"><span class="n"><a id="t24" href="#t24">24</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">logger</span><span class="op">.</span><span class="nam">setLevel</span><span class="op">(</span><span class="nam">logging</span><span class="op">.</span><span class="nam">INFO</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t25" href="#t25">25</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t26" href="#t26">26</a></span><span class="t">        <span class="com"># Avoid duplicate handlers (important in tests)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="par run show_par"><span class="n"><a id="t27" href="#t27">27</a></span><span class="t">        <span class="key">if</span> <span class="key">not</span> <span class="nam">self</span><span class="op">.</span><span class="nam">logger</span><span class="op">.</span><span class="nam">handlers</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">27&#x202F;&#x219B;&#x202F;exit</span><span class="annotate long">line 27 didn't return from function '__init__' because the condition on line 27 was always true</span></span></p>
+    <p class="run"><span class="n"><a id="t27" href="#t27">27</a></span><span class="t">        <span class="key">if</span> <span class="key">not</span> <span class="nam">self</span><span class="op">.</span><span class="nam">logger</span><span class="op">.</span><span class="nam">handlers</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t28" href="#t28">28</a></span><span class="t">            <span class="nam">fh</span> <span class="op">=</span> <span class="nam">logging</span><span class="op">.</span><span class="nam">FileHandler</span><span class="op">(</span><span class="nam">log_file</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t29" href="#t29">29</a></span><span class="t">            <span class="nam">formatter</span> <span class="op">=</span> <span class="nam">logging</span><span class="op">.</span><span class="nam">Formatter</span><span class="op">(</span><span class="str">'%(asctime)s | %(levelname)s | %(message)s'</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t30" href="#t30">30</a></span><span class="t">            <span class="nam">fh</span><span class="op">.</span><span class="nam">setFormatter</span><span class="op">(</span><span class="nam">formatter</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -118,10 +116,10 @@
     <p class="pln"><span class="n"><a id="t34" href="#t34">34</a></span><span class="t">        <span class="str">"""Enhanced logging with structured data"""</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t35" href="#t35">35</a></span><span class="t">        <span class="nam">status</span> <span class="op">=</span> <span class="str">"SUCCESS"</span> <span class="key">if</span> <span class="nam">success</span> <span class="key">else</span> <span class="str">"FAILED"</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t36" href="#t36">36</a></span><span class="t">        <span class="nam">ip</span> <span class="op">=</span> <span class="nam">getattr</span><span class="op">(</span><span class="nam">request</span><span class="op">,</span> <span class="str">"remote_addr"</span><span class="op">,</span> <span class="str">"unknown"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t37" href="#t37">37</a></span><span class="t">        <span class="nam">message</span> <span class="op">=</span> <span class="str">f"{event_type} | User:{user_info} | IP:{ip} | {details} | Status:{status}"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t37" href="#t37">37</a></span><span class="t">        <span class="nam">message</span> <span class="op">=</span> <span class="fst">f"</span><span class="op">{</span><span class="nam">event_type</span><span class="op">}</span><span class="fst"> | User:</span><span class="op">{</span><span class="nam">user_info</span><span class="op">}</span><span class="fst"> | IP:</span><span class="op">{</span><span class="nam">ip</span><span class="op">}</span><span class="fst"> | </span><span class="op">{</span><span class="nam">details</span><span class="op">}</span><span class="fst"> | Status:</span><span class="op">{</span><span class="nam">status</span><span class="op">}</span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t38" href="#t38">38</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t39" href="#t39">39</a></span><span class="t">        <span class="key">if</span> <span class="key">not</span> <span class="nam">success</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t40" href="#t40">40</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">logger</span><span class="op">.</span><span class="nam">warning</span><span class="op">(</span><span class="str">f"SECURITY_ALERT - {message}"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t40" href="#t40">40</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">logger</span><span class="op">.</span><span class="nam">warning</span><span class="op">(</span><span class="fst">f"</span><span class="fst">SECURITY_ALERT - </span><span class="op">{</span><span class="nam">message</span><span class="op">}</span><span class="fst">"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t41" href="#t41">41</a></span><span class="t">        <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t42" href="#t42">42</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">logger</span><span class="op">.</span><span class="nam">info</span><span class="op">(</span><span class="nam">message</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t43" href="#t43">43</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -150,7 +148,7 @@
             <a class="nav" href="z_145eef247bfb46b6_server_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.11.0">coverage.py v7.11.0</a>,
-            created at 2025-10-22 23:23 +0200
+            created at 2025-10-29 02:38 -0400
         </p>
     </div>
 </footer>
