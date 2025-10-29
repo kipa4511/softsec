@@ -28,13 +28,13 @@ python3 -m venv .venv
 # Install the necessary dependencies
 python -m pip install -e ".[dev]"
 pip install pgpy
+pip install pikepdf
 pip install hypothesis
 pip install pytest pytest-cov hypothesis
 
-
-
 # Run the unit tests
 PYTHONPATH=./src pytest -vv
+# For some API test cases a test user is required, Those test cases can be marked to failed initially. In that case after deployment create a user : test123@gmail.com and password : test123 and rerun the test. Make the test user is deleted after the test.
 ```
 
 ### Deploy
