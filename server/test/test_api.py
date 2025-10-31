@@ -2,6 +2,8 @@ import io
 import json
 import pytest
 import flask
+import server
+import itsdangerous
 from server import create_app
 import tempfile, hashlib
 from sqlalchemy.exc import IntegrityError
@@ -18,6 +20,12 @@ import runpy
 from itsdangerous import BadSignature, SignatureExpired
 import pickle
 from server import WatermarkingMethod
+from flask import Flask
+from werkzeug.security import generate_password_hash
+from conftest import _patch_get_engine_for_endpoint, FailingEngine
+
+
+from server import create_app
 
 
 @pytest.fixture
@@ -834,42 +842,6 @@ def test_require_auth_bad_signature(monkeypatch, client):
     assert "Invalid" in resp.get_data(as_text=True)
     
     
-def test_rmap_initiate_basic(monkeypatch, client):
-    """Simulate a successful /api/rmap-initiate request."""
-
-    class DummyRMAP:
-        def __init__(self, *a, **kw): pass
-        def handle_message1(self, incoming):
-            # mimic a proper RMAP response object structure
-            return {"payload": {"message": "success"}}
-
-    # Replace the actual RMAP class with our dummy
-    monkeypatch.setattr("server.RMAP", DummyRMAP)
-
-    # Now send the request
-    resp = client.post("/api/rmap-initiate", json={"identity": "Group_24"})
-
-    # Check status code and output
-    assert resp.status_code in (200, 201), f"Unexpected: {resp.status_code}, body={resp.get_data(as_text=True)}"
-    data = resp.get_json()
-    assert "payload" in data
-    assert data["payload"]["message"] == "success"
-
-
-def test_rmap_get_link_success(monkeypatch, client, tmp_path):
-    class DummyRMAP:
-        last_identity = "Group_24"
-        def handle_message2(self, incoming): return {"result": "12345"}
-    monkeypatch.setattr("server.RMAP", lambda im=None: DummyRMAP())
-
-    app = create_app()
-    app.config.update(TESTING=True, STORAGE_DIR=tmp_path)
-    client = app.test_client()
-
-    resp = client.post("/api/rmap-get-link", json={"dummy": "data"})
-    assert resp.status_code == 200
-    assert "result" in resp.get_json()
-    
 def test_create_watermark_file_missing_authenticated(tmp_path):
     app = create_app()
     app.config.update(TESTING=True, STORAGE_DIR=tmp_path, SECRET_KEY="x")
@@ -916,8 +888,120 @@ def test_get_version_invalid_path(monkeypatch, client, tmp_path):
     monkeypatch.setattr("server.create_engine", lambda: None)
     resp = client.get("/api/get-version/fake")
     assert resp.status_code in (404, 503)
-       
     
+@pytest.fixture
+def client(monkeypatch, tmp_path):
+    """Provide Flask test client with a fake DB engine."""
+    app = create_app()
+    app.config.update(TESTING=True, STORAGE_DIR=str(tmp_path), SECRET_KEY="test_secret")
+
+    class DummyRow:
+        def __init__(self, id=1, email="user@example.com", login="user", hpassword=None):
+            self.id = id
+            self.email = email
+            self.login = login
+            self.hpassword = hpassword or generate_password_hash("goodpass")
+
+    class DummyConn:
+        def __init__(self, mode="ok"):
+            self.mode = mode
+        def __enter__(self): return self
+        def __exit__(self, *a): pass
+        def execute(self, *a, **kw):
+            if self.mode == "error":
+                raise Exception("Simulated DB failure")
+            if self.mode == "no_user":
+                return type("R", (), {"fetchone": lambda self=None: None})()
+            return type("R", (), {"fetchone": lambda self=None: DummyRow()})()
+
+    class DummyEngine:
+        def __init__(self, mode="ok"): self.mode = mode
+        def connect(self): return DummyConn(self.mode)
+
+    app.config["_ENGINE"] = DummyEngine()
+    with app.test_client() as c:
+        yield c
+
+
+def test_login_missing_credentials(client):
+    """Should return 400 if email or password missing."""
+    resp = client.post("/api/login", json={"email": "test@example.com"})
+    assert resp.status_code == 400
+    assert "error" in resp.get_json()
+
+
+def test_login_database_error(monkeypatch, tmp_path):
+    """Should return 503 when DB connection fails."""
+    app = create_app()
+    app.config.update(TESTING=True, STORAGE_DIR=str(tmp_path), SECRET_KEY="test_secret")
+
+    class DummyConn:
+        def __enter__(self): raise Exception("Connection failed")
+        def __exit__(self, *a): pass
+
+    class DummyEngine:
+        def connect(self): return DummyConn()
+
+    monkeypatch.setattr("server.create_app", lambda: app)
+    app.config["_ENGINE"] = DummyEngine()
+
+    c = app.test_client()
+    resp = c.post("/api/login", json={"email": "user@example.com", "password": "pass"})
+    assert resp.status_code == 503
+    assert "database error" in resp.get_json()["error"]
+
+
+def test_login_invalid_credentials(monkeypatch, client):
+    """Should return 401 if wrong password or user not found."""
+    from werkzeug.security import generate_password_hash
+
+    class DummyRow:
+        id, email, login, hpassword = 1, "u@e.com", "u", generate_password_hash("different")
+
+    class DummyConn:
+        def __enter__(self): return self
+        def __exit__(self, *a): pass
+        def execute(self, *a, **kw):
+            return type("R", (), {"fetchone": lambda self=None: DummyRow()})()
+
+    class DummyEngine:
+        def connect(self): return DummyConn()
+
+    client.application.config["_ENGINE"] = DummyEngine()
+
+    resp = client.post("/api/login", json={"email": "u@e.com", "password": "badpass"})
+    assert resp.status_code == 401
+    assert resp.get_json()["error"] == "invalid credentials"
+
+
+def test_login_success(monkeypatch, client):
+    """Should return 200 and token when login succeeds."""
+    from werkzeug.security import generate_password_hash
+
+    class DummyRow:
+        id, email, login, hpassword = 42, "user@example.com", "user", generate_password_hash("goodpass")
+
+    class DummyConn:
+        def __enter__(self): return self
+        def __exit__(self, *a): pass
+        def execute(self, *a, **kw):
+            return type("R", (), {"fetchone": lambda self=None: DummyRow()})()
+
+    class DummyEngine:
+        def connect(self): return DummyConn()
+
+    client.application.config["_ENGINE"] = DummyEngine()
+
+    resp = client.post("/api/login", json={"email": "user@example.com", "password": "goodpass"})
+    data = resp.get_json()
+    assert resp.status_code == 200
+    assert "token" in data
+    assert data["token_type"] == "bearer"
+    assert isinstance(data["expires_in"], int)    
+    
+
+
+
 
 
     

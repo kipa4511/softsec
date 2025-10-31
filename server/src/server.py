@@ -52,6 +52,13 @@ handler.setFormatter(
 )
 logger.addHandler(handler)
 
+# At top level in src/server.py
+def get_engine():
+    from sqlalchemy import create_engine
+    import os
+    return create_engine(os.getenv("DATABASE_URL", "sqlite:///:memory:"))
+
+
 
 def create_app():
     static_dir = Path(__file__).parent / "static"
@@ -138,29 +145,9 @@ def create_app():
     )
     rmap = RMAP(identity_manager)
 
-    # Helper to derive identity name from key file actually used
-    
-    CLIENT_KEYS_DIR = Path("./keys/clients")
-
-    def derive_identity_from_pubkey(pubkey_path: str | Path) -> str | None:
-        """
-        Extracts the group identity name (e.g. 'Group_24') from the public key filename.
-        """
-        if not pubkey_path:
-            return None
-        pub_path = Path(pubkey_path)
-        if not pub_path.exists():
-            # try searching for a match by stem in keys/clients
-            for p in CLIENT_KEYS_DIR.glob("Group_*.asc"):
-                if p.stem.lower() == str(pubkey_path).lower():
-                    return p.stem
-            return None
-        return pub_path.stem  # e.g. 'Group_24' from Group_24.asc
-
     # -----------------------
     # RMAP INITIATE endpoint
     # -----------------------
-
     CLIENT_KEYS_DIR = Path("./keys/clients")
 
     @app.route("/rmap-initiate", methods=["POST"], strict_slashes=False)
@@ -168,60 +155,15 @@ def create_app():
     def rmap_initiate():
         incoming = request.get_json(force=True) or {}
         result = rmap.handle_message1(incoming)
-
-        identity = "Unknown_Group"
-        try:
-            provided_identity = incoming.get("identity", "").strip()
-
-            # --- Step 1: try to find direct match ---
-            if provided_identity:
-                candidate = CLIENT_KEYS_DIR / f"{provided_identity}.asc"
-                if candidate.exists():
-                    identity = provided_identity
-                    logger.info(f"✅ Found public key for {identity}: {candidate.name}")
-                else:
-                    logger.warning(f"⚠️ No direct match for {provided_identity}.asc")
-    
-            # --- Step 2: try to match by pattern (Group_xx) if step 1 failed ---
-            if identity == "Unknown_Group":
-                # Extract 'Group_xx' pattern from any existing file
-                group_files = list(CLIENT_KEYS_DIR.glob("Group_*.asc"))
-                if group_files:
-                    # See if any file name contains provided_identity
-                    if provided_identity:
-                        matches = [f for f in group_files if provided_identity.lower() in f.stem.lower()]
-                        if matches:
-                            match = re.search(r"(Group_\d+)", matches[0].stem)
-                            if match:
-                                identity = match.group(1)
-                                logger.info(f"✅ Derived identity from partial match: {identity}")
-                    # If still not found, look for file with same numeric suffix as private key (if it exists)
-                    if identity == "Unknown_Group":
-                        logger.warning("⚠️ Falling back to first available public key.")
-                        first_match = re.search(r"(Group_\d+)", group_files[0].stem)
-                        identity = first_match.group(1) if first_match else "Unknown_Group"
-                else:
-                    logger.error("❌ No public key files found in keys/clients!")
-    
-            # --- Step 3: final safeguard — log available keys ---
-            if identity == "Unknown_Group":
-                all_keys = [f.name for f in CLIENT_KEYS_DIR.glob('*.asc')]
-                logger.warning(f"⚠️ Identity unresolved. Available public keys: {all_keys}")
-    
-        except Exception as e:
-            logger.exception(f"❌ Error determining identity: {e}")
-    
-        # Store for use in /rmap-get-link
-        rmap.last_identity = identity
+        # Store identity for later use
+        rmap.last_identity = incoming.get("identity", "Unknown_Group")
         app.config["LAST_RMAP_REQUEST"] = incoming
-        logger.info(f"✅ Active RMAP identity set to: {identity}")
-    
         return jsonify(result), (200 if "error" not in result else 400)
 
 
-    # -----------------------
-    # RMAP GET LINK endpoint
-    # -----------------------
+# -----------------------
+# RMAP GET LINK endpoint
+# -----------------------
     @app.route("/rmap-get-link", methods=["POST"], strict_slashes=False)
     @app.route("/api/rmap-get-link", methods=["POST"], strict_slashes=False)
     def rmap_get_link():
@@ -231,42 +173,27 @@ def create_app():
             return jsonify(result), 400
 
         session_secret = result["result"]
-
-        # Reuse normalized identity
-        identity = getattr(rmap, "last_identity", None)
-        if not identity:
-            prev_req = app.config.get("LAST_RMAP_REQUEST", {})
-            raw_identity = prev_req.get("identity", "Unknown_Group")
-            match = re.search(r"(Group_\d+)", raw_identity, re.IGNORECASE)
-            identity = match.group(1).capitalize() if match else "Unknown_Group"
-
-        logger.info(f"RMAP request received from identity: {identity}")
-        logger.info(f"🔐 Session secret established for {identity}")
-        
-
-        # -----------------------
-        # Select base PDF
-        # -----------------------
         assets_dir = Path("assets")
-        base_pdf_path = assets_dir / f"{identity}.pdf"
+        storage_dir = Path(app.config["STORAGE_DIR"])
 
+    # Derive or reuse identity
+        identity = getattr(rmap, "last_identity", "Unknown_Group")
+
+    # Determine source PDF
+        base_pdf_path = assets_dir / f"{identity}.pdf"
         if not base_pdf_path.exists():
-            logger.warning(f"No specific PDF found for {identity}, falling back to base.pdf")
             base_pdf_path = assets_dir / "base.pdf"
             if not base_pdf_path.exists():
-                assets_dir.mkdir(parents=True, exist_ok=True)
-                with open(base_pdf_path, "wb") as f:
-                    f.write(b"%PDF-1.4\n% minimal placeholder\n1 0 obj<<>>endobj\ntrailer<<>>\n%%EOF")
-                logger.info("Created placeholder assets/base.pdf")
+                logger.warning(f"No specific PDF found for {identity}, creating placeholder.")
+                base_pdf_path.parent.mkdir(parents=True, exist_ok=True)
+                base_pdf_path.write_bytes(b"%PDF-1.4\n% Placeholder PDF\n")
 
-        # -----------------------
-        # Create watermarked PDF
-        # -----------------------
-        storage_dir = Path(app.config["STORAGE_DIR"])
+    # Output PDF path
         pdf_name = f"{session_secret}.pdf"
         pdf_path = storage_dir / pdf_name
 
         try:
+        # Apply watermark
             data = WMUtils.apply_watermark(
                 method="hash-eof",
                 pdf=base_pdf_path,
@@ -280,68 +207,19 @@ def create_app():
                 logger.info(f"✅ Watermarked PDF written for {identity}: {pdf_path}")
             else:
                 logger.warning("⚠️ Watermark function did not return bytes")
-        except Exception:
-            logger.exception("❌ Failed to create watermarked PDF")
+
+        except Exception as e:
+            logger.exception(f"❌ Failed to create watermarked PDF: {e}")
             return jsonify({"error": "watermarking failed"}), 500
 
-        # -----------------------
-        # Store DB record
-        # -----------------------
-        link = f"{pdf_name}"
-        try:
-            with get_engine().begin() as conn:
-                conn.execute(
-                    text("""
-                        INSERT INTO Versions (link, path, intended_for, method)
-                        VALUES (:link, :path, :intended_for, :method)
-                    """),
-                    {
-                        "link": session_secret,
-                        "path": str(pdf_path),
-                        "intended_for": identity,
-                        "method": "hash-eof",
-                    },
-                )
-        except Exception as e:
-            logger.warning(f"Could not insert version row: {e}")
 
+    # Return the response
         return jsonify({
             "result": session_secret,
-            "link": link,
+            "link": pdf_name,
             "identity": identity
         }), 200
 
-        # -----------------------------
-        # ✅ Send response immediately
-        # -----------------------------
-        response = jsonify(result)
-    
-        # -----------------------------
-        # ✅ Schedule connection close
-        # -----------------------------
-        import threading, time
-        def close_rmap_connection(timeout=5):
-            """Gracefully close RMAP session after a limited timeout."""
-            time.sleep(timeout)
-            try:
-                if hasattr(rmap, "close"):
-                    rmap.close()
-                    logger.info("🧹 RMAP connection closed gracefully.")
-                else:
-                    # Clear session-related state manually
-                    rmap.last_identity = None
-                    app.config.pop("LAST_RMAP_REQUEST", None)
-                    logger.info("🧹 RMAP session data cleared (no explicit close method).")
-            except Exception as e:
-                logger.error(f"❌ Error closing RMAP session: {e}")
-
-        # Run cleanup asynchronously
-        threading.Thread(target=close_rmap_connection, daemon=True).start()
-
-        # -----------------------------
-        # ✅ Return response to client
-        # -----------------------------
-        return response, 200
       
     # -----------------------
     # Static + UI routes
