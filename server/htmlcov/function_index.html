@@ -3,20 +3,20 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Coverage report</title>
-    <link rel="icon" sizes="32x32" href="favicon_32_cb_58284776.png">
-    <link rel="stylesheet" href="style_cb_6b508a39.css" type="text/css">
-    <script src="coverage_html_cb_6fb7b396.js" defer></script>
+    <link rel="icon" sizes="32x32" href="favicon_32_cb_c827f16f.png">
+    <link rel="stylesheet" href="style_cb_9ff733b0.css" type="text/css">
+    <script src="coverage_html_cb_dd2e7eb5.js" defer></script>
 </head>
 <body class="indexfile">
 <header>
     <div class="content">
         <h1>Coverage report:
-            <span class="pc_cov">84%</span>
+            <span class="pc_cov">33%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
             <label for="help_panel_state">
-                <img id="keyboard_icon" src="keybd_closed_cb_ce680311.png" alt="Show/hide keyboard shortcuts">
+                <img id="keyboard_icon" src="keybd_closed_cb_900cfef5.png" alt="Show/hide keyboard shortcuts">
             </label>
             <div id="help_panel">
                 <p class="legend">Shortcuts on this page</p>
@@ -27,6 +27,8 @@
                         <kbd>s</kbd>
                         <kbd>m</kbd>
                         <kbd>x</kbd>
+                        <kbd>b</kbd>
+                        <kbd>p</kbd>
                         <kbd>c</kbd>
                         &nbsp; change column sorting
                     </p>
@@ -54,809 +56,552 @@
                 <a class="button" href="class_index.html">Classes</a>
         </h2>
         <p class="text">
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.11.0">coverage.py v7.11.0</a>,
-            created at 2025-10-31 16:46 -0400
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.13.1">coverage.py v7.13.1</a>,
+            created at 2026-01-03 22:21 +0100
         </p>
     </div>
 </header>
 <main id="index">
     <table class="index" data-sortable>
         <thead>
+            <tr class="tablehead grouphead">
+                <th class="spacer">&nbsp;</th>
+                <th class="spacer">&nbsp;</th>
+                <th class="spacer">&nbsp;</th>
+                <th class="left" colspan="4">Statements</th>
+                <th class="spacer">&nbsp;</th>
+                <th class="left" colspan="3">Branches</th>
+                <th class="spacer">&nbsp;</th>
+                <th>Total</th>
+            </tr>
             <tr class="tablehead" title="Click to sort">
-                <th id="file" class="name left" aria-sort="none" data-shortcut="f">File<span class="arrows"></span></th>
-                <th id="region" class="name left" aria-sort="none" data-default-sort-order="ascending" data-shortcut="n">function<span class="arrows"></span></th>
+                <th id="file" class="name" aria-sort="none" data-shortcut="f">File<span class="arrows"></span></th>
+                <th id="region" class="name" aria-sort="none" data-default-sort-order="ascending" data-shortcut="n">function<span class="arrows"></span></th>
+                <th class="spacer">&nbsp;</th>
+                <th id="statements_coverage" aria-sort="none" data-default-sort-order="descending">coverage<span class="arrows"></span></th>
                 <th id="statements" aria-sort="none" data-default-sort-order="descending" data-shortcut="s">statements<span class="arrows"></span></th>
                 <th id="missing" aria-sort="none" data-default-sort-order="descending" data-shortcut="m">missing<span class="arrows"></span></th>
                 <th id="excluded" aria-sort="none" data-default-sort-order="descending" data-shortcut="x">excluded<span class="arrows"></span></th>
-                <th id="coverage" class="right" aria-sort="none" data-shortcut="c">coverage<span class="arrows"></span></th>
+                <th class="spacer">&nbsp;</th>
+                <th id="branches_coverage" aria-sort="none" data-default-sort-order="descending">coverage<span class="arrows"></span></th>
+                <th id="branches" aria-sort="none" data-default-sort-order="descending" data-shortcut="b">branches<span class="arrows"></span></th>
+                <th id="partial" aria-sort="none" data-default-sort-order="descending" data-shortcut="p">partial<span class="arrows"></span></th>
+                <th class="spacer">&nbsp;</th>
+                <th id="coverage" aria-sort="none" data-shortcut="c">coverage<span class="arrows"></span></th>
             </tr>
         </thead>
         <tbody>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_add_after_eof_py.html#t68">src/add_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_add_after_eof_py.html#t68"><data value='get_usage'>AddAfterEOF.get_usage</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t56">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t56"><data value='get_engine'>get_engine</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 3">0%</td>
+                <td>3</td>
+                <td>3</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 0">100%</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 3">0%</td>
+            </tr>
+            <tr class="region">
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t63">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t63"><data value='create_app'>create_app</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="80 80">100%</td>
+                <td>80</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 0">100%</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="80 80">100%</td>
+            </tr>
+            <tr class="region">
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t84">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t84"><data value='db_url'>create_app.db_url</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="1 1">100%</td>
                 <td>1</td>
                 <td>0</td>
                 <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_add_after_eof_py.html#t71">src/add_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_add_after_eof_py.html#t71"><data value='add_watermark'>AddAfterEOF.add_watermark</data></a></td>
-                <td>11</td>
-                <td>1</td>
-                <td>0</td>
-                <td class="right" data-ratio="10 11">91%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_add_after_eof_py.html#t102">src/add_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_add_after_eof_py.html#t102"><data value='is_watermark_applicable'>AddAfterEOF.is_watermark_applicable</data></a></td>
-                <td>1</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 0">100%</td>
                 <td>0</td>
                 <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="1 1">100%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_add_after_eof_py.html#t110">src/add_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_add_after_eof_py.html#t110"><data value='read_secret'>AddAfterEOF.read_secret</data></a></td>
-                <td>31</td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t89">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t89"><data value='init_test_db'>create_app._init_test_db</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 4">0%</td>
+                <td>4</td>
                 <td>4</td>
                 <td>0</td>
-                <td class="right" data-ratio="27 31">87%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 0">100%</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 4">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_add_after_eof_py.html#t161">src/add_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_add_after_eof_py.html#t161"><data value='build_payload'>AddAfterEOF._build_payload</data></a></td>
-                <td>8</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="8 8">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_add_after_eof_py.html#t177">src/add_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_add_after_eof_py.html#t177"><data value='mac_hex'>AddAfterEOF._mac_hex</data></a></td>
-                <td>2</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="2 2">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_add_after_eof_py.html">src/add_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_add_after_eof_py.html"><data value=''><span class='no-noun'>(no function)</span></data></a></td>
-                <td>19</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="19 19">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_email_after_eof_py.html#t73">src/email_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_email_after_eof_py.html#t73"><data value='get_usage'>EmailAfterEOF.get_usage</data></a></td>
-                <td>1</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_email_after_eof_py.html#t76">src/email_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_email_after_eof_py.html#t76"><data value='add_watermark'>EmailAfterEOF.add_watermark</data></a></td>
-                <td>13</td>
-                <td>1</td>
-                <td>0</td>
-                <td class="right" data-ratio="12 13">92%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_email_after_eof_py.html#t109">src/email_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_email_after_eof_py.html#t109"><data value='is_watermark_applicable'>EmailAfterEOF.is_watermark_applicable</data></a></td>
-                <td>1</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_email_after_eof_py.html#t117">src/email_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_email_after_eof_py.html#t117"><data value='read_secret'>EmailAfterEOF.read_secret</data></a></td>
-                <td>31</td>
-                <td>5</td>
-                <td>0</td>
-                <td class="right" data-ratio="26 31">84%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_email_after_eof_py.html#t164">src/email_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_email_after_eof_py.html#t164"><data value='is_email'>EmailAfterEOF.is_email</data></a></td>
-                <td>2</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="2 2">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_email_after_eof_py.html#t172">src/email_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_email_after_eof_py.html#t172"><data value='build_payload'>EmailAfterEOF._build_payload</data></a></td>
-                <td>8</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="8 8">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_email_after_eof_py.html#t195">src/email_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_email_after_eof_py.html#t195"><data value='mac_hex'>EmailAfterEOF._mac_hex</data></a></td>
-                <td>2</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="2 2">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_email_after_eof_py.html#t200">src/email_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_email_after_eof_py.html#t200"><data value='extract_email_parts'>EmailAfterEOF.extract_email_parts</data></a></td>
-                <td>6</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="6 6">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_email_after_eof_py.html">src/email_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_email_after_eof_py.html"><data value=''><span class='no-noun'>(no function)</span></data></a></td>
-                <td>25</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="25 25">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_email_in_producer_py.html#t72">src/email_in_producer.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_email_in_producer_py.html#t72"><data value='get_usage'>EmailInProducer.get_usage</data></a></td>
-                <td>1</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_email_in_producer_py.html#t75">src/email_in_producer.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_email_in_producer_py.html#t75"><data value='add_watermark'>EmailInProducer.add_watermark</data></a></td>
-                <td>13</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="13 13">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_email_in_producer_py.html#t114">src/email_in_producer.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_email_in_producer_py.html#t114"><data value='is_watermark_applicable'>EmailInProducer.is_watermark_applicable</data></a></td>
-                <td>1</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_email_in_producer_py.html#t122">src/email_in_producer.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_email_in_producer_py.html#t122"><data value='read_secret'>EmailInProducer.read_secret</data></a></td>
-                <td>16</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="16 16">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_email_in_producer_py.html#t181">src/email_in_producer.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_email_in_producer_py.html#t181"><data value='is_email'>EmailInProducer.is_email</data></a></td>
-                <td>2</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="2 2">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_email_in_producer_py.html#t189">src/email_in_producer.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_email_in_producer_py.html#t189"><data value='build_payload'>EmailInProducer._build_payload</data></a></td>
-                <td>10</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="10 10">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_email_in_producer_py.html#t219">src/email_in_producer.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_email_in_producer_py.html#t219"><data value='mac_hex'>EmailInProducer._mac_hex</data></a></td>
-                <td>2</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="2 2">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_email_in_producer_py.html#t224">src/email_in_producer.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_email_in_producer_py.html#t224"><data value='extract_email_parts'>EmailInProducer.extract_email_parts</data></a></td>
-                <td>6</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="6 6">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_email_in_producer_py.html">src/email_in_producer.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_email_in_producer_py.html"><data value=''><span class='no-noun'>(no function)</span></data></a></td>
-                <td>28</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="28 28">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_hash_after_eof_py.html#t71">src/hash_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_hash_after_eof_py.html#t71"><data value='get_usage'>HashAfterEOF.get_usage</data></a></td>
-                <td>1</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_hash_after_eof_py.html#t74">src/hash_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_hash_after_eof_py.html#t74"><data value='add_watermark'>HashAfterEOF.add_watermark</data></a></td>
-                <td>14</td>
-                <td>1</td>
-                <td>0</td>
-                <td class="right" data-ratio="13 14">93%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_hash_after_eof_py.html#t110">src/hash_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_hash_after_eof_py.html#t110"><data value='is_watermark_applicable'>HashAfterEOF.is_watermark_applicable</data></a></td>
-                <td>1</td>
-                <td>1</td>
-                <td>0</td>
-                <td class="right" data-ratio="0 1">0%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_hash_after_eof_py.html#t118">src/hash_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_hash_after_eof_py.html#t118"><data value='read_secret'>HashAfterEOF.read_secret</data></a></td>
-                <td>31</td>
-                <td>3</td>
-                <td>0</td>
-                <td class="right" data-ratio="28 31">90%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_hash_after_eof_py.html#t165">src/hash_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_hash_after_eof_py.html#t165"><data value='is_email'>HashAfterEOF.is_email</data></a></td>
-                <td>2</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="2 2">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_hash_after_eof_py.html#t173">src/hash_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_hash_after_eof_py.html#t173"><data value='build_payload'>HashAfterEOF._build_payload</data></a></td>
-                <td>7</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="7 7">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_hash_after_eof_py.html#t195">src/hash_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_hash_after_eof_py.html#t195"><data value='mac_hex'>HashAfterEOF._mac_hex</data></a></td>
-                <td>2</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="2 2">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_hash_after_eof_py.html">src/hash_after_eof.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_hash_after_eof_py.html"><data value=''><span class='no-noun'>(no function)</span></data></a></td>
-                <td>24</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="24 24">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_security_logger_py.html#t7">src/security_logger.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_security_logger_py.html#t7"><data value='init__'>SecurityLogger.__init__</data></a></td>
-                <td>16</td>
-                <td>1</td>
-                <td>0</td>
-                <td class="right" data-ratio="15 16">94%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_security_logger_py.html#t33">src/security_logger.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_security_logger_py.html#t33"><data value='log_event'>SecurityLogger.log_event</data></a></td>
-                <td>6</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="6 6">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_security_logger_py.html#t48">src/security_logger.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_security_logger_py.html#t48"><data value='log_success'>log_success</data></a></td>
-                <td>1</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_security_logger_py.html#t51">src/security_logger.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_security_logger_py.html#t51"><data value='log_failure'>log_failure</data></a></td>
-                <td>1</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_security_logger_py.html#t54">src/security_logger.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_security_logger_py.html#t54"><data value='log_event'>log_event</data></a></td>
-                <td>3</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="3 3">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_security_logger_py.html">src/security_logger.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_security_logger_py.html"><data value=''><span class='no-noun'>(no function)</span></data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t129">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t129"><data value='get_engine'>create_app.get_engine</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="7 11">64%</td>
                 <td>11</td>
+                <td>4</td>
                 <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="11 11">100%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="2 4">50%</td>
+                <td>4</td>
+                <td>2</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="9 15">60%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t56">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t56"><data value='get_engine'>get_engine</data></a></td>
-                <td>3</td>
-                <td>3</td>
-                <td>0</td>
-                <td class="right" data-ratio="0 3">0%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t63">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t63"><data value='create_app'>create_app</data></a></td>
-                <td>79</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="79 79">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t84">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t84"><data value='db_url'>create_app.db_url</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t149">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t149"><data value='serializer'>create_app._serializer</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 1">0%</td>
+                <td>1</td>
                 <td>1</td>
                 <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 0">100%</td>
                 <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 1">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t90">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t90"><data value='get_engine'>create_app.get_engine</data></a></td>
-                <td>5</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="5 5">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t98">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t98"><data value='serializer'>create_app._serializer</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t152">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t152"><data value='auth_error'>create_app._auth_error</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 1">0%</td>
+                <td>1</td>
                 <td>1</td>
                 <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 0">100%</td>
                 <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 1">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t101">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t101"><data value='auth_error'>create_app._auth_error</data></a></td>
-                <td>1</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t104">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t104"><data value='require_auth'>create_app.require_auth</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t155">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t155"><data value='require_auth'>create_app.require_auth</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="2 2">100%</td>
                 <td>2</td>
                 <td>0</td>
                 <td>0</td>
-                <td class="right" data-ratio="2 2">100%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 0">100%</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="2 2">100%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t106">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t106"><data value='wrapper'>create_app.require_auth.wrapper</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t157">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t157"><data value='wrapper'>create_app.require_auth.wrapper</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 12">0%</td>
                 <td>12</td>
-                <td>9</td>
+                <td>12</td>
                 <td>0</td>
-                <td class="right" data-ratio="3 12">25%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 2">0%</td>
+                <td>2</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 14">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t128">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t128"><data value='sha256_file'>create_app._sha256_file</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t179">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t179"><data value='sha256_file'>create_app._sha256_file</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 5">0%</td>
+                <td>5</td>
                 <td>5</td>
                 <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 2">0%</td>
+                <td>2</td>
                 <td>0</td>
-                <td class="right" data-ratio="5 5">100%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 7">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t155">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t155"><data value='rmap_initiate'>create_app.rmap_initiate</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t206">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t206"><data value='rmap_initiate'>create_app.rmap_initiate</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 5">0%</td>
+                <td>5</td>
                 <td>5</td>
                 <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 0">100%</td>
                 <td>0</td>
-                <td class="right" data-ratio="5 5">100%</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 5">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t169">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t169"><data value='rmap_get_link'>create_app.rmap_get_link</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t220">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t220"><data value='rmap_get_link'>create_app.rmap_get_link</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 28">0%</td>
                 <td>28</td>
+                <td>28</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 8">0%</td>
+                <td>8</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 36">0%</td>
+            </tr>
+            <tr class="region">
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t280">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t280"><data value='static_files'>create_app.static_files</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 1">0%</td>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 0">100%</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 1">0%</td>
+            </tr>
+            <tr class="region">
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t284">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t284"><data value='serve_storage'>create_app.serve_storage</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 1">0%</td>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 0">100%</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 1">0%</td>
+            </tr>
+            <tr class="region">
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t288">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t288"><data value='healthz'>create_app.healthz</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 7">0%</td>
+                <td>7</td>
                 <td>7</td>
                 <td>0</td>
-                <td class="right" data-ratio="21 28">75%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 0">100%</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 7">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t229">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t229"><data value='static_files'>create_app.static_files</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t303">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t303"><data value='serve_login'>create_app.serve_login</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 1">0%</td>
+                <td>1</td>
                 <td>1</td>
                 <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 0">100%</td>
                 <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 1">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t233">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t233"><data value='serve_storage'>create_app.serve_storage</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t307">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t307"><data value='home'>create_app.home</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 1">0%</td>
+                <td>1</td>
                 <td>1</td>
                 <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 0">100%</td>
                 <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 1">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t237">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t237"><data value='healthz'>create_app.healthz</data></a></td>
-                <td>7</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="7 7">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t252">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t252"><data value='serve_login'>create_app.serve_login</data></a></td>
-                <td>1</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t256">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t256"><data value='home'>create_app.home</data></a></td>
-                <td>1</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t267">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t267"><data value='create_user'>create_app.create_user</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t318">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t318"><data value='create_user'>create_app.create_user</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 25">0%</td>
                 <td>25</td>
-                <td>9</td>
+                <td>25</td>
                 <td>0</td>
-                <td class="right" data-ratio="16 25">64%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 4">0%</td>
+                <td>4</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 29">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t314">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t314"><data value='login'>create_app.login</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t365">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t365"><data value='login'>create_app.login</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 21">0%</td>
+                <td>21</td>
                 <td>21</td>
                 <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 4">0%</td>
+                <td>4</td>
                 <td>0</td>
-                <td class="right" data-ratio="21 21">100%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 25">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t364">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t364"><data value='upload_document'>create_app.upload_document</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t415">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t415"><data value='upload_document'>create_app.upload_document</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 28">0%</td>
                 <td>28</td>
-                <td>3</td>
+                <td>28</td>
                 <td>0</td>
-                <td class="right" data-ratio="25 28">89%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 4">0%</td>
+                <td>4</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 32">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t441">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t441"><data value='list_documents'>create_app.list_documents</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t492">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t492"><data value='list_documents'>create_app.list_documents</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 8">0%</td>
                 <td>8</td>
+                <td>8</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 0">100%</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 8">0%</td>
+            </tr>
+            <tr class="region">
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t530">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t530"><data value='list_versions'>create_app.list_versions</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 13">0%</td>
+                <td>13</td>
+                <td>13</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 2">0%</td>
                 <td>2</td>
                 <td>0</td>
-                <td class="right" data-ratio="6 8">75%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 15">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t479">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t479"><data value='list_versions'>create_app.list_versions</data></a></td>
-                <td>13</td>
-                <td>3</td>
-                <td>0</td>
-                <td class="right" data-ratio="10 13">77%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t521">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t521"><data value='list_all_versions'>create_app.list_all_versions</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t572">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t572"><data value='list_all_versions'>create_app.list_all_versions</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 7">0%</td>
                 <td>7</td>
-                <td>3</td>
+                <td>7</td>
                 <td>0</td>
-                <td class="right" data-ratio="4 7">57%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 0">100%</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 7">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t555">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t555"><data value='get_document'>create_app.get_document</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t606">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t606"><data value='get_document'>create_app.get_document</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 26">0%</td>
                 <td>26</td>
-                <td>15</td>
+                <td>26</td>
                 <td>0</td>
-                <td class="right" data-ratio="11 26">42%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 8">0%</td>
+                <td>8</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 34">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t619">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t619"><data value='get_version'>create_app.get_version</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t670">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t670"><data value='get_version'>create_app.get_version</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 9">0%</td>
                 <td>9</td>
-                <td>3</td>
+                <td>9</td>
                 <td>0</td>
-                <td class="right" data-ratio="6 9">67%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 4">0%</td>
+                <td>4</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 13">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t688">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t688"><data value='safe_resolve_under_storage'>create_app._safe_resolve_under_storage</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t739">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t739"><data value='safe_resolve_under_storage'>create_app._safe_resolve_under_storage</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 13">0%</td>
                 <td>13</td>
+                <td>13</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 6">0%</td>
                 <td>6</td>
                 <td>0</td>
-                <td class="right" data-ratio="7 13">54%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 19">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t710">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t710"><data value='delete_document'>create_app.delete_document</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t761">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t761"><data value='delete_document'>create_app.delete_document</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 37">0%</td>
                 <td>37</td>
-                <td>11</td>
+                <td>37</td>
                 <td>0</td>
-                <td class="right" data-ratio="26 37">70%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 6">0%</td>
+                <td>6</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 43">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t787">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t787"><data value='create_watermark'>create_app.create_watermark</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t838">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t838"><data value='create_watermark'>create_app.create_watermark</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="36 72">50%</td>
                 <td>72</td>
-                <td>41</td>
+                <td>36</td>
                 <td>0</td>
-                <td class="right" data-ratio="31 72">43%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="8 14">57%</td>
+                <td>14</td>
+                <td>6</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="44 86">51%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t949">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t949"><data value='load_plugin'>create_app.load_plugin</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t1000">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t1000"><data value='load_plugin'>create_app.load_plugin</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 33">0%</td>
                 <td>33</td>
-                <td>22</td>
+                <td>33</td>
                 <td>0</td>
-                <td class="right" data-ratio="11 33">33%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 12">0%</td>
+                <td>12</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 45">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t1033">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t1033"><data value='get_watermarking_methods'>create_app.get_watermarking_methods</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t1084">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t1084"><data value='get_watermarking_methods'>create_app.get_watermarking_methods</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 5">0%</td>
+                <td>5</td>
                 <td>5</td>
                 <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 2">0%</td>
+                <td>2</td>
                 <td>0</td>
-                <td class="right" data-ratio="5 5">100%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 7">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t1048">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t1048"><data value='read_watermark'>create_app.read_watermark</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t1099">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t1099"><data value='read_watermark'>create_app.read_watermark</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="31 48">65%</td>
                 <td>48</td>
-                <td>13</td>
+                <td>17</td>
                 <td>0</td>
-                <td class="right" data-ratio="35 48">73%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="5 12">42%</td>
+                <td>12</td>
+                <td>5</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="36 60">60%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t1167">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html#t1167"><data value='set_security_headers'>create_app.set_security_headers</data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t1218">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html#t1218"><data value='set_security_headers'>create_app.set_security_headers</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 6">0%</td>
+                <td>6</td>
+                <td>6</td>
+                <td>0</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 0">100%</td>
                 <td>0</td>
                 <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="0 0">100%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="0 6">0%</td>
             </tr>
             <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html">src/server.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_server_py.html"><data value=''><span class='no-noun'>(no function)</span></data></a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html">src&#8201;/&#8201;server.py</a></td>
+                <td class="name"><a href="z_145eef247bfb46b6_server_py.html"><data value=''><span class='no-noun'>(no function)</span></data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="41 45">91%</td>
                 <td>45</td>
                 <td>4</td>
                 <td>0</td>
-                <td class="right" data-ratio="41 45">91%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t53">src/watermarking_cli.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t53"><data value='read_text_from_file'>_read_text_from_file</data></a></td>
-                <td>2</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="2 2">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t58">src/watermarking_cli.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t58"><data value='read_text_from_stdin'>_read_text_from_stdin</data></a></td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="3 4">75%</td>
                 <td>4</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="4 4">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t65">src/watermarking_cli.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t65"><data value='resolve_secret'>_resolve_secret</data></a></td>
-                <td>7</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="7 7">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t76">src/watermarking_cli.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t76"><data value='resolve_key'>_resolve_key</data></a></td>
-                <td>9</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="9 9">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t93">src/watermarking_cli.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t93"><data value='cmd_methods'>cmd_methods</data></a></td>
-                <td>3</td>
                 <td>1</td>
-                <td>0</td>
-                <td class="right" data-ratio="2 3">67%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t99">src/watermarking_cli.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t99"><data value='cmd_explore'>cmd_explore</data></a></td>
-                <td>7</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="7 7">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t110">src/watermarking_cli.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t110"><data value='cmd_embed'>cmd_embed</data></a></td>
-                <td>11</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="11 11">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t131">src/watermarking_cli.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t131"><data value='cmd_extract'>cmd_extract</data></a></td>
-                <td>8</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="8 8">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t147">src/watermarking_cli.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t147"><data value='build_parser'>build_parser</data></a></td>
-                <td>35</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="35 35">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t223">src/watermarking_cli.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html#t223"><data value='main'>main</data></a></td>
-                <td>19</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="19 19">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html">src/watermarking_cli.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_cli_py.html"><data value=''><span class='no-noun'>(no function)</span></data></a></td>
-                <td>25</td>
-                <td>1</td>
-                <td>0</td>
-                <td class="right" data-ratio="24 25">96%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_method_py.html#t78">src/watermarking_method.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_method_py.html#t78"><data value='load_pdf_bytes'>load_pdf_bytes</data></a></td>
-                <td>11</td>
-                <td>3</td>
-                <td>0</td>
-                <td class="right" data-ratio="8 11">73%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_method_py.html#t117">src/watermarking_method.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_method_py.html#t117"><data value='is_pdf_bytes'>is_pdf_bytes</data></a></td>
-                <td>1</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_method_py.html#t147">src/watermarking_method.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_method_py.html#t147"><data value='get_usage'>WatermarkingMethod.get_usage</data></a></td>
-                <td>1</td>
-                <td>1</td>
-                <td>0</td>
-                <td class="right" data-ratio="0 1">0%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_method_py.html#t161">src/watermarking_method.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_method_py.html#t161"><data value='add_watermark'>WatermarkingMethod.add_watermark</data></a></td>
-                <td>1</td>
-                <td>1</td>
-                <td>0</td>
-                <td class="right" data-ratio="0 1">0%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_method_py.html#t202">src/watermarking_method.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_method_py.html#t202"><data value='is_watermark_applicable'>WatermarkingMethod.is_watermark_applicable</data></a></td>
-                <td>1</td>
-                <td>1</td>
-                <td>0</td>
-                <td class="right" data-ratio="0 1">0%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_method_py.html#t236">src/watermarking_method.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_method_py.html#t236"><data value='read_secret'>WatermarkingMethod.read_secret</data></a></td>
-                <td>1</td>
-                <td>1</td>
-                <td>0</td>
-                <td class="right" data-ratio="0 1">0%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_method_py.html">src/watermarking_method.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_method_py.html"><data value=''><span class='no-noun'>(no function)</span></data></a></td>
-                <td>25</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="25 25">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_utils_py.html#t70">src/watermarking_utils.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_utils_py.html#t70"><data value='register_method'>register_method</data></a></td>
-                <td>1</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_utils_py.html#t75">src/watermarking_utils.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_utils_py.html#t75"><data value='get_method'>get_method</data></a></td>
-                <td>6</td>
-                <td>1</td>
-                <td>0</td>
-                <td class="right" data-ratio="5 6">83%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_utils_py.html#t97">src/watermarking_utils.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_utils_py.html#t97"><data value='apply_watermark'>apply_watermark</data></a></td>
-                <td>2</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="2 2">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_utils_py.html#t108">src/watermarking_utils.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_utils_py.html#t108"><data value='is_watermarking_applicable'>is_watermarking_applicable</data></a></td>
-                <td>2</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="2 2">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_utils_py.html#t118">src/watermarking_utils.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_utils_py.html#t118"><data value='read_watermark'>read_watermark</data></a></td>
-                <td>2</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="2 2">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_utils_py.html#t136">src/watermarking_utils.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_utils_py.html#t136"><data value='sha1'>_sha1</data></a></td>
-                <td>1</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="1 1">100%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_utils_py.html#t140">src/watermarking_utils.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_utils_py.html#t140"><data value='explore_pdf'>explore_pdf</data></a></td>
-                <td>41</td>
-                <td>2</td>
-                <td>0</td>
-                <td class="right" data-ratio="39 41">95%</td>
-            </tr>
-            <tr class="region">
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_utils_py.html">src/watermarking_utils.py</a></td>
-                <td class="name left"><a href="z_145eef247bfb46b6_watermarking_utils_py.html"><data value=''><span class='no-noun'>(no function)</span></data></a></td>
-                <td>29</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="right" data-ratio="29 29">100%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="44 49">90%</td>
             </tr>
         </tbody>
         <tfoot>
             <tr class="total">
-                <td class="name left">Total</td>
-                <td class="name left">&nbsp;</td>
-                <td>1159</td>
-                <td>183</td>
+                <td class="name">Total</td>
+                <td class="name">&nbsp;</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="198 560">35%</td>
+                <td>560</td>
+                <td>362</td>
                 <td>0</td>
-                <td class="right" data-ratio="976 1159">84%</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="18 98">18%</td>
+                <td>98</td>
+                <td>14</td>
+                <td class="spacer">&nbsp;</td>
+                <td data-ratio="216 658">33%</td>
             </tr>
         </tfoot>
     </table>
@@ -867,8 +612,8 @@
 <footer>
     <div class="content">
         <p>
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.11.0">coverage.py v7.11.0</a>,
-            created at 2025-10-31 16:46 -0400
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.13.1">coverage.py v7.13.1</a>,
+            created at 2026-01-03 22:21 +0100
         </p>
     </div>
     <aside class="hidden">

@@ -3,6 +3,11 @@ import sys
 import pytest
 from pathlib import Path
 from functools import wraps
+import sys
+from pathlib import Path
+
+SRC_PATH = Path(__file__).resolve().parents[1] / "src"
+sys.path.insert(0, str(SRC_PATH))
 
 
 @pytest.fixture
@@ -31,6 +36,7 @@ def client_with_auth(monkeypatch, tmp_path):
         secret = "SECRET"
         method = "hash-eof"
         path = str(tmp_path / "dummy.pdf")
+        name = "dummy.pdf"
 
     # -------------------------------------------------
     # Dummy Connection

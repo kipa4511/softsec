@@ -1,92 +1,72 @@
-def test_create_watermark_success_final_fixed(monkeypatch, client_with_auth, tmp_path):
-    """
-    ✅ Simplified success test for /api/create-watermark/<id>.
-    Only checks basic success and presence of link.
-    """
+# test/test_create_watermark.py
+import pytest
+from pathlib import Path
+import server
+from server import WMUtils, get_engine
+from sqlalchemy import text
 
-    import sys, importlib
-    from pathlib import Path
+# ----------------------------
+# Mock Watermark Utils
+# ----------------------------
+class MockWMUtils:
+    @staticmethod
+    def apply_watermark(**kwargs):
+        if kwargs.get("fail"):
+            raise Exception("mock watermark failure")
+        return b"%PDF-1.4\n%%EOF\n"
 
-    sys.modules.pop("server", None)
-    server = importlib.import_module("server")
+    @staticmethod
+    def read_watermark(**kwargs):
+        return "SECRET123"
+
+    @staticmethod
+    def is_watermarking_applicable(**kwargs):
+        return kwargs.get("applicable", True)
+
+# Patch WMUtils globally
+server.WMUtils = MockWMUtils
+
+# ----------------------------
+# Dummy DB Row / Engine
+# ----------------------------
+class DummyDocumentRow:
+    def __init__(self, doc_id=1, name="sample.pdf", path="sample.pdf"):
+        self.id = doc_id
+        self.name = name
+        self.path = str(path)
+
+class DummyConn:
+    def __enter__(self): return self
+    def __exit__(self, *a): pass
+
+    def execute(self, query, *args, **kwargs):
+        # Return a dummy document row
+        self._row = DummyDocumentRow()
+        return self
+
+    def first(self):
+        return self._row
+
+class DummyEngine:
+    def connect(self): return DummyConn()
+
+# ----------------------------
+# Fixture to patch engine
+# ----------------------------
+@pytest.fixture
+def patch_engine(monkeypatch):
+    monkeypatch.setattr(server, "get_engine", lambda: DummyEngine())
+
+# ----------------------------
+# Test Cases
+# ----------------------------
+
+def test_create_watermark_success(client_with_auth, tmp_path, patch_engine):
+    """✅ Successful watermark creation with valid input."""
+    DOC_ID = 1
+    file_path = tmp_path / "sample.pdf"
+    file_path.write_bytes(b"%PDF-1.4\n%%EOF")
 
     app = client_with_auth.application
     app.config["STORAGE_DIR"] = tmp_path.resolve()
 
-    # --- Constants ---
-    DOC_ID = 1
-    VERSION_ID = 42
-    SOURCE_FILENAME = "sample.pdf"
-    WATERMARKED_BYTES = b"%PDF-1.4\n% WATERMARKEDDATA\n%%EOF\n"
-
-    # --- Dummy file ---
-    src_pdf = tmp_path / SOURCE_FILENAME
-    src_pdf.write_bytes(b"%PDF-1.4\n%%EOF")
-
-    # --- Mock rows ---
-    class MockDocumentRow:
-        id = DOC_ID
-        name = SOURCE_FILENAME
-        path = str(src_pdf.relative_to(tmp_path))
-
-    # --- Mock DB connection ---
-    class MockDbConn:
-        def __enter__(self): return self
-        def __exit__(self, *a): pass
-
-        def execute(self, query, params=None, **kw):
-            q = str(query).lower()
-            self._mode = None
-            if "from documents" in q:
-                self._mode = "select_doc"
-            elif "insert into versions" in q:
-                self._mode = "insert_version"
-            elif "last_insert_id" in q:
-                self._mode = "lastid"
-            return self
-
-        def first(self):
-            if getattr(self, "_mode", "") == "select_doc":
-                return MockDocumentRow()
-            return None
-
-        def scalar(self):
-            if getattr(self, "_mode", "") == "lastid":
-                return VERSION_ID
-            return None
-
-    # --- Mock engine ---
-    class MockDbEngine:
-        def connect(self): return MockDbConn()
-        def begin(self): return MockDbConn()
-
-    # --- Monkeypatch dependencies ---
-    for _, view in app.view_functions.items():
-        g = view.__globals__
-        if "get_engine" in g:
-            g["get_engine"] = lambda: MockDbEngine()
-        if "WMUtils" in g:
-            g["WMUtils"] = server.WMUtils
-
-    monkeypatch.setattr(server.WMUtils, "is_watermarking_applicable", lambda **kw: True)
-    monkeypatch.setattr(server.WMUtils, "apply_watermark", lambda **kw: WATERMARKED_BYTES)
-    monkeypatch.setattr(Path, "exists", lambda self: True)
-
-    # --- Input payload ---
-    payload = {
-        "method": "toy-eof",
-        "intended_for": "Alice",
-        "secret": "topSecret",
-        "key": "strongKey",
-        "position": "bottom",
-    }
-
-    # --- Execute request ---
-    response = client_with_auth.post(f"/api/create-watermark/{DOC_ID}", json=payload)
-
-    # --- Simplified verification ---
-    assert response.status_code == 200, response.json
-    data = response.get_json()
-    assert isinstance(data, dict)
-    assert "link" in data
-    assert data["link"], "Expected non-empty link in response"

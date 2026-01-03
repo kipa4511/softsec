@@ -22,7 +22,7 @@ import pickle
 from server import WatermarkingMethod
 from flask import Flask
 from werkzeug.security import generate_password_hash
-from conftest import _patch_get_engine_for_endpoint, FailingEngine
+
 
 
 from server import create_app
