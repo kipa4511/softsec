@@ -86,13 +86,65 @@ def create_app():
             f"mysql+pymysql://{app.config['DB_USER']}:{app.config['DB_PASSWORD']}"
             f"@{app.config['DB_HOST']}:{app.config['DB_PORT']}/{app.config['DB_NAME']}?charset=utf8mb4"
         )
+    def _init_mock_db(engine):
+        """
+        Initialize an in-memory SQLite database for unit tests.
+        """
+        with engine.begin() as conn:
+            conn.exec_driver_sql("""
+            CREATE TABLE IF NOT EXISTS Users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                email TEXT UNIQUE NOT NULL,
+                hpassword TEXT NOT NULL,
+                login TEXT NOT NULL
+            );
+            """)
+
+            conn.exec_driver_sql("""
+            CREATE TABLE IF NOT EXISTS Documents (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                path TEXT NOT NULL,
+                ownerid INTEGER NOT NULL,
+                creation TEXT,
+                sha256 BLOB,
+                size INTEGER
+            );
+            """)
+
+            conn.exec_driver_sql("""
+            CREATE TABLE IF NOT EXISTS Versions (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                documentid INTEGER NOT NULL,
+                link TEXT UNIQUE NOT NULL,
+                intended_for TEXT,
+                secret TEXT NOT NULL,
+                method TEXT NOT NULL,
+                position TEXT,
+                path TEXT NOT NULL
+            );
+            """)
 
     def get_engine():
+        """
+        Return a database engine.
+        In TEST_MODE, use an in-memory SQLite database.
+        """
         eng = app.config.get("_ENGINE")
-        if eng is None:
+        if eng is not None:
+            return eng
+
+        test_mode = os.environ.get("TEST_MODE") == "1"
+
+        if test_mode:
+            eng = create_engine("sqlite:///:memory:", future=True)
+            _init_mock_db(eng)
+        else:
             eng = create_engine(db_url(), pool_pre_ping=True, future=True)
-            app.config["_ENGINE"] = eng
+
+        app.config["_ENGINE"] = eng
         return eng
+
 
     # --- Helpers ---
     def _serializer():
