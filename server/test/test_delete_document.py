@@ -1,5 +1,5 @@
 from pathlib import Path
-from conftest import _patch_get_engine_for_endpoint
+
 
 
 def test_delete_document_success(monkeypatch, client_with_auth, tmp_path):

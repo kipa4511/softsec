@@ -8,19 +8,25 @@ WORKDIR /app
 
 # Install system dependencies required for building and fetching git packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    git \
     build-essential \
-    && rm -rf /var/lib/apt/lists/*
+    gcc \
+    g++ \
+    libffi-dev \
+    libssl-dev \
+    curl \
+    libqpdf-dev \
+    git
 
 # Copy project description first (dependency metadata)
-COPY pyproject.toml /app/pyproject.toml
+COPY pyproject.toml /app/
 
 #pikepdf
 RUN pip install pikepdf
 
-
 # Install dependencies (including rmap via git)
-RUN pip install --no-cache-dir -e .
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
+    pip install --no-cache-dir -e . && \
+    pip install --no-cache-dir psutil
 
 # Copy sources after dependencies installation
 COPY src /app/src
@@ -34,7 +40,6 @@ RUN mkdir -p /app/assets
 RUN mkdir -p /app/static
 RUN mkdir -p /app/logs
 COPY src/assets/base.pdf /app/assets/base.pdf
-COPY src/logs/security.log /app/logs/security.log
 COPY src/assets/Group_03.pdf /app/assets/Group_03.pdf
 COPY src/assets/Group_04.pdf /app/assets/Group_04.pdf
 COPY src/assets/Group_05.pdf /app/assets/Group_05.pdf
@@ -58,9 +63,6 @@ COPY src/assets/Group_23.pdf /app/assets/Group_23.pdf
 COPY src/assets/Group_24.pdf /app/assets/Group_24.pdf
 COPY src/assets/Group_26.pdf /app/assets/Group_26.pdf
 COPY src/assets/Nicolas.pdf /app/assets/Nicolas.pdf
-
-# Install again in case local src defines entry points
-RUN pip install --no-cache-dir -e .
 
 EXPOSE 5000
 
